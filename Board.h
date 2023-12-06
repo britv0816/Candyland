@@ -13,11 +13,6 @@
 
 using namespace std;
 
-struct Card {
-    string color;
-    bool isDouble;
-};
-
 struct Tile
 {
     string color;
@@ -33,17 +28,24 @@ private:
     const static int _MAX_CANDY_STORE = 3;
     int _candy_store_position[_MAX_CANDY_STORE];
     int _candy_store_count;
-    int _player_position;
+    int _player_position1;
+    int _player_position2;
+    int _player_position3;
+    int _player_position4;
+
 
 public:
     Board();
 
+    void generateChance();
     void resetBoard();
     void displayTile(int);
     void displayBoard();
 
+    void updatePosition(int);
     bool setPlayerPosition(int);
 
+    void getColor();
     int getBoardSize() const;
     int getCandyStoreCount() const;
     int getPlayerPosition() const;

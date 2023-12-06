@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "Players.h"
 using namespace std;
 
@@ -52,13 +54,13 @@ void Player::setGold(double gold) {
 
 }
 
-void setType(string effect_type) {
-    effect_type = effect_type;
-}
+// void setType(string effect_type) {
+//     _effect_type = effect_type;
+// }
 
-string getType() {
-    return effect_type;
-}
+// string getType() {
+//     return _effect_type;
+// }
 
 double Player::getGold() {
     return _gold;
@@ -162,4 +164,49 @@ bool Player::removeCandy(string candy_name) {
     }
 
     return false;
+}
+
+void Player::loadPlayer() {
+
+    ifstream file_input;
+    file_input.open("characters.txt");
+    
+    if (file_input.fail()) {
+        cout << "Could not open file" << endl;
+        return; 
+    }
+
+    string line = "";
+    string name = "";
+
+    while (getline(file_input, line)) {
+
+        stringstream ss(line);
+        string playersName = "";
+        string candylist = "";
+
+        getline(ss, playersName, '|');
+        name = playersName;
+        
+        ss >> _stamina;
+        ss.ignore();
+
+        ss >> _gold;
+        ss.ignore();
+
+        getline (ss, candylist, '|');
+
+        stringstream playerCandy(candylist);
+        string name = "";
+
+        while(getline(playerCandy, name, ",")) {
+            if (_candy_amount < _MAX_CANDY_AMOUNT) {
+                Candy candy = findCandy(name);
+                _inventory.push_back(candy);
+                _candy_amount++;
+            }
+        }
+    }
+
+    file_input.close();
 }

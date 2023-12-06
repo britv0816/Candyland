@@ -7,5 +7,10 @@ class Tile {
     string tile_type_;
 
     public:
+    // tile();
+    void shortcutTile();
+    void icecreamTile();
+    void gumdropTile();
+    void gingerbreadTile();
 
 };

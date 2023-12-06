@@ -1,7 +1,7 @@
-#ifndef STORE_H
-#define STORE_H
+#ifndef CANDY_STORE_H
+#define CANDY_STORE_H
 
-#include "Gameboard.h"
+#include "Board.h"
 #include "Players.h"
 #include <iostream>
 
@@ -17,6 +17,7 @@ class CandyStore {
     public:
         CandyStore();
         CandyStore(string store_name);
+        void loadCandies();
         bool addCandy(Candy);
         bool removeCandy(string candy_name);
         void displayCandies() const;

@@ -18,12 +18,14 @@ class Player {
         int _MAX_CANDY_AMOUNT = 9;
         int _stamina;
         double _gold;
-        Candy _inventory[9];
+        vector<Candy> _inventory;
         int _candy_amount;
 
     public:
         Player();
         Player(int, int, double, Candy[], int);
+
+        void loadPlayer();
         int getCandyAmount();
         void setStamina(int);
         int getStamina();
