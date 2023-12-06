@@ -1,15 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
+
 #include "Players.h"
 using namespace std;
 
 
 Player::Player() {
+    _name = "";
     _stamina = 0;
     _gold = 0.00;
     _candy_amount = 0;
-    _effect = "";
 
     for (int i =0; i < _MAX_CANDY_AMOUNT; i++) {
         _inventory[i] = {"", "", 0.00, ""};
@@ -17,22 +19,29 @@ Player::Player() {
 
     }
 
-Player::Player(int MAX_CANDY, int stamina, double gold, Candy[] player, int candy_amount){
+Player::Player(string name, int stamina, double gold, Candy player[]){
+    _name = "";
     _stamina = stamina;
     _gold = gold;
-    _effect = effect;
     _candy_amount = 0;
 
-    for (int i =0; i < _MAX_CANDY_AMOUNT && i < CANDY_ARR_SIZE; i++) {
-        _inventory[i] = candy_array[i];
+    for (int i =0; i < _MAX_CANDY_AMOUNT && i < 15; i++) {
+        _inventory.push_back(player[i]);
 
-        if (candy_array[i].name != "") {
+        if (player[i].name != "") {
     
             _candy_amount++;
         }
     }
-    
 }
+
+/*
+useCandy() {
+
+    if (candy.name == )
+
+}
+*/
 
 int Player::getCandyAmount(){
     return _candy_amount;
@@ -67,22 +76,23 @@ double Player::getGold() {
 
 }
 
-void Player::setEffect(string effect) {
+void Player::setEffectValue(string effect) {
     _effect = effect;
 
 }
 
-string Player::getEffect() {
+string Player::getEffectValue() {
     return _effect;
 
 }
 
 void Player::printInventory() {
 
-    for(int i=0; i < _MAX_CANDY_AMOUNT; i+=2)
+    for(int i=0; i < _MAX_CANDY_AMOUNT; i+=3)
     {
         string empty;
         string blank;
+        string blank2;
 
         cout << "|";
 
@@ -102,8 +112,17 @@ void Player::printInventory() {
                 blank = "[" + _inventory[i+1].name + "]";
             }
 
+        if (i+2 < _MAX_CANDY_AMOUNT && _inventory[i+2].name == "") {
+            blank2 = "[Empty]";
+        }
+            else {
+                blank2 = "[" + _inventory[i+2].name + "]";
+            }
+
         cout << empty << "|" ;
-        cout << blank << "|" << endl;
+        cout << blank << "|" ; 
+        cout << blank2 << "|" << endl;
+
     }
 
 }
@@ -127,7 +146,7 @@ Candy Player::findCandy(string candy_name) {
         }
     }
 
-    return {"", "", 0.00, ""};
+    return {"", "", "", 0.00,""};
 }
 
 

@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -16,14 +17,16 @@ struct Candy {
 class Player {
     private:
         int _MAX_CANDY_AMOUNT = 9;
+        string _name;
         int _stamina;
         double _gold;
         vector<Candy> _inventory;
+        string _effect;
         int _candy_amount;
 
     public:
         Player();
-        Player(int, int, double, Candy[], int);
+        Player(string, int, double, Candy[]);
 
         void loadPlayer();
         int getCandyAmount();
@@ -33,8 +36,8 @@ class Player {
         double getGold();
         void setType(string);
         string getType();
-        void setEffect(string);
-        string getEffect();
+        void setEffectValue(string);
+        string getEffectValue();
         void printInventory();
         Candy findCandy(string);
         bool addCandy(Candy);
