@@ -14,7 +14,7 @@ Player::Player() {
     _candy_amount = 0;
 
     for (int i =0; i < _MAX_CANDY_AMOUNT; i++) {
-        _inventory[i] = {"", "", 0.00, ""};
+        _inventory[i] = {"", "", "", 0, 0.00, ""};
     }
 
     }
@@ -146,7 +146,7 @@ Candy Player::findCandy(string candy_name) {
         }
     }
 
-    return {"", "", "", 0.00,""};
+    return {"", "", "", 0, 0.00, ""};
 }
 
 
@@ -174,7 +174,7 @@ bool Player::removeCandy(string candy_name) {
             for (int j = i; j < _MAX_CANDY_AMOUNT-1; j++)
             _inventory[j]= _inventory[j+1];
 
-            _inventory[_MAX_CANDY_AMOUNT -1] = {"", "", 0.00, ""};
+            _inventory[_MAX_CANDY_AMOUNT -1] = {"", "", "", 0, 0.00, ""};
 
             _candy_amount--;
 
@@ -218,7 +218,7 @@ void Player::loadPlayer() {
         stringstream playerCandy(candylist);
         string name = "";
 
-        while(getline(playerCandy, name, ",")) {
+        while(getline(playerCandy, name, ',')) {
             if (_candy_amount < _MAX_CANDY_AMOUNT) {
                 Candy candy = findCandy(name);
                 _inventory.push_back(candy);

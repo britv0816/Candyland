@@ -19,7 +19,6 @@ struct Tile
     string tile_type;
 };
 
-
 class Board
 {
 private:
@@ -28,11 +27,7 @@ private:
     const static int _MAX_CANDY_STORE = 3;
     int _candy_store_position[_MAX_CANDY_STORE];
     int _candy_store_count;
-    int _player_position1;
-    int _player_position2;
-    int _player_position3;
-    int _player_position4;
-
+    int _player_position;
 
 public:
     Board();
@@ -45,7 +40,7 @@ public:
     void updatePosition(int);
     bool setPlayerPosition(int);
 
-    void getColor();
+    void getColorCard();
     int getBoardSize() const;
     int getCandyStoreCount() const;
     int getPlayerPosition() const;

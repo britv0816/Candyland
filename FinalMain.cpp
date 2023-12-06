@@ -84,8 +84,6 @@ int main()
     Player player1;
     Player player2;
     
-    Player1.
-
     int num_players;
     string name1;
     string name2;
@@ -99,14 +97,14 @@ int main()
     cout << "Enter player 2 name: " << endl;
     cin >> name2;
 
+    player1.loadPlayer();
+    player2.loadPlayer();
+
+    
+
 
     cout << "Begin game:" << endl;
     getColor();
-
-    /*
-    load candies from file
-    ask # of players
-    */
     
     return 0;
 }

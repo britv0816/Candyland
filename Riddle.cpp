@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Games.h"
+#include "Riddle.h"
 
 using namespace std;
 

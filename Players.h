@@ -14,6 +14,13 @@ struct Candy {
     string candy_type;
 };
 
+struct Character {
+    string name;
+    int stamina;
+    double gold;
+    vector<Candy> candies;
+};
+
 class Player {
     private:
         int _MAX_CANDY_AMOUNT = 9;
@@ -34,8 +41,8 @@ class Player {
         int getStamina();
         void setGold(double);
         double getGold();
-        void setType(string);
-        string getType();
+        // void setType(string);
+        // string getType();
         void setEffectValue(string);
         string getEffectValue();
         void printInventory();

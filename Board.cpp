@@ -24,12 +24,12 @@ void Board::generateChance() {
 
     }
 
-    else if (random <= 31 && random >= ) {
+    else if (random <= 31 && random >= 70) {
         
     }
 
 }
-
+// Board player1;  player1.updatePosition
 void Board::updatePosition(int tiles) {
 
     /* create a rand functino that randomizes a number between 1-6 
@@ -47,7 +47,7 @@ void Board::updatePosition(int tiles) {
     _player_position = new_position;
 }
 
-void Board::getColor(){
+void Board::getColorCard(){
 
     string tilesColor = _tiles[_player_position].color;
 
@@ -211,10 +211,7 @@ void Board::resetBoard()
         _candy_store_position[i] = -1;
     }
 
-    _player_position1 = 0;
-    _player_position2 = 0;
-    _player_position3 = 0;
-    _player_position4 = 0;
+    _player_position = 0;
 
 }
 
@@ -226,25 +223,11 @@ void Board::displayTile(int position)
     }
     Tile target = _tiles[position];
     cout << target.color << " ";
-    if (position == _player_position1)
+    if (position == _player_position)
     {
-        cout << "1";
+        cout << "X";
     }
 
-    else if (position == _player_position2)
-    {
-        cout << "2";
-    }
-
-    else if (position == _player_position3)
-    {
-        cout << "3";
-    }
-
-    else if (position == _player_position4)
-    {
-        cout << "4";
-    }
     else
     {
         cout << " ";
@@ -352,3 +335,4 @@ bool Board::movePlayer(int tile_to_move_forward)
     _player_position = new_player_position;
     return true;
 }
+
