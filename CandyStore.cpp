@@ -12,17 +12,17 @@ CandyStore::CandyStore() {
     _candy_count = 0;
 }
 
-CandyStore::CandyStore(string) {
-    _store_name = "";
+CandyStore::CandyStore(string store_name) {
+    _store_name = store_name;
     _candy_count = 0;
 }
 
 bool CandyStore::addCandy(Candy candy) {
     if (_candy_count == _MAX_CANDIES) {
-        cout << "Unable to add candies to store." << _store_name << endl;
+        cout << "Unable to add candies to store:" << _store_name << endl;
         return false;
     }
-    _candies[_candy_count] = candy;
+    _candies.push_back(candy);
     _candy_count++;
     return true;
 }
@@ -36,11 +36,11 @@ void CandyStore::displayCandies () const {
     cout << "Candies are present in store: " << _store_name << endl;
     for (int i = 0; i<_candy_count; i++) {
         cout << _candies[i].name << endl;
-        return;
+        // return;
     }
 }
 
-void loadCandies(vector<Candy>candies) {
+void CandyStore::loadCandies() {
     ifstream file_input;
     file_input.open("candies.txt");
     
@@ -65,7 +65,7 @@ void loadCandies(vector<Candy>candies) {
         getline (ss, candy.candy_type, '|');
         ss >> candy.price;
 
-        candies.push_back(candy);
+        _candies.push_back(candy);
     }
 
     file_input.close();

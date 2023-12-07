@@ -35,7 +35,11 @@ class Player {
         Player();
         Player(string, int, double, Candy[]);
 
-        void loadPlayer();
+        void loadCharacter(string);
+        void pickCharacter();
+        void removeCharacter(string);
+        void useCandy(Candy);
+
         int getCandyAmount();
         void setStamina(int);
         int getStamina();

@@ -15,10 +15,7 @@ using namespace std;
 
     Games();
     Games(string);
-    string getRock();
-    string getPaper();
-    string getScissors();
-    string getRiddle();
+    void playRockPaperScissors(Player);
 
     };
 

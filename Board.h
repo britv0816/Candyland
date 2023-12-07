@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include "Tiles.h"
+
 #define RED "\033[;41m"     /* Red */
 #define GREEN "\033[;42m"   /* Green */
 #define BLUE "\033[;44m"    /* Blue */
@@ -12,12 +14,6 @@
 #define RESET "\033[0m"
 
 using namespace std;
-
-struct Tile
-{
-    string color;
-    string tile_type;
-};
 
 class Board
 {
@@ -32,7 +28,6 @@ private:
 public:
     Board();
 
-    void generateChance();
     void resetBoard();
     void displayTile(int);
     void displayBoard();
@@ -41,6 +36,8 @@ public:
     bool setPlayerPosition(int);
 
     void getColorCard();
+    void getCalamities();
+
     int getBoardSize() const;
     int getCandyStoreCount() const;
     int getPlayerPosition() const;

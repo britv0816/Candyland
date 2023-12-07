@@ -7,7 +7,7 @@ class Game {
     private:
     Player my_character_;
 
-    Candy vector<Candies>;
+    vector<Candy>candies;
 
     public:
 
@@ -21,6 +21,6 @@ class Game {
     void pickStartCharacter();
     void startGame();
 
-}
+};
 
 #endif

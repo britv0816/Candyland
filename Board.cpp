@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Tiles.h"
 #include <iostream>
 
 using namespace std;
@@ -16,21 +17,16 @@ if = 50 1-5/5
 if less than 25 then 1-10/10 if both are above 75 then produce special tile
 */
 
-void Board::generateChance() {
-
-    int random = rand() % 100;
-
-    if (random >= 30) {
-
-    }
-
-    else if (random <= 31 && random >= 70) {
-        
-    }
-
-}
 // Board player1;  player1.updatePosition
 void Board::updatePosition(int tiles) {
+
+    int new_position = (_player_position + tiles) % _BOARD_SIZE);
+
+
+    Tile currentTile = _tiles(new_position);
+
+    _player_position = new_position;
+
 
     /* create a rand functino that randomizes a number between 1-6 
     create the get color function and run if statements
@@ -336,3 +332,15 @@ bool Board::movePlayer(int tile_to_move_forward)
     return true;
 }
 
+void Board::getCalamities() {
+
+    int chance = rand() % 10;
+
+    cout << "Random Number: " << chance << endl;
+
+        // cout << color << endl;
+    
+    if (chance == 3) {
+        cout << 
+    }
+ }

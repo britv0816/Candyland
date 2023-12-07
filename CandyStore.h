@@ -4,6 +4,7 @@
 #include "Board.h"
 #include "Players.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -11,12 +12,12 @@ class CandyStore {
     private:
         string _store_name;
         const static int _MAX_CANDIES = 5;
-        Candy _candies[_MAX_CANDIES];
+        vector<Candy> _candies;
         int _candy_count;
 
     public:
         CandyStore();
-        CandyStore(string store_name);
+        CandyStore(string);
         void loadCandies();
         bool addCandy(Candy);
         bool removeCandy(string candy_name);

@@ -91,20 +91,27 @@ int main()
     cout << "Welcome to the game of candyland. Please enter the number of players: " << endl;
     cin >> num_players;
 
+    while (num_players < 4) {
+        cout << "Welcome to the game of candyland. Please enter the number of players: " << endl;
+        cin >> num_players;
+    }
+
     cout << "Enter player 1 name: " << endl;
     cin >> name1;
 
     cout << "Enter player 2 name: " << endl;
     cin >> name2;
 
-    player1.loadPlayer();
-    player2.loadPlayer();
+    // player1.loadCharacter();
+    // player2.loadCharacter();
 
-    
+    board.displayBoard();
 
+    player1.pickCharacter();
+    player2.pickCharacter();
 
     cout << "Begin game:" << endl;
-    getColor();
+
     
     return 0;
 }

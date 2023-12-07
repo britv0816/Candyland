@@ -14,13 +14,13 @@ Player::Player() {
     _candy_amount = 0;
 
     for (int i =0; i < _MAX_CANDY_AMOUNT; i++) {
-        _inventory[i] = {"", "", "", 0, 0.00, ""};
+        _inventory.push_back({"", "", "", 0, 0.00, ""});
     }
-
-    }
+    assert(_inventory.size() == _MAX_CANDY_AMOUNT);
+}
 
 Player::Player(string name, int stamina, double gold, Candy player[]){
-    _name = "";
+    _name = name;
     _stamina = stamina;
     _gold = gold;
     _candy_amount = 0;
@@ -29,7 +29,6 @@ Player::Player(string name, int stamina, double gold, Candy player[]){
         _inventory.push_back(player[i]);
 
         if (player[i].name != "") {
-    
             _candy_amount++;
         }
     }
@@ -88,7 +87,7 @@ string Player::getEffectValue() {
 
 void Player::printInventory() {
 
-    for(int i=0; i < _MAX_CANDY_AMOUNT; i+=3)
+    for(int i=0; i < _inventory.size(); i+=3)
     {
         string empty;
         string blank;
@@ -96,7 +95,7 @@ void Player::printInventory() {
 
         cout << "|";
 
-        if (_inventory[i].name == "") {
+        if (i < _inventory.size() && _inventory[i].name == "") {
             empty = "[Empty]";
         }
         else {
@@ -105,14 +104,14 @@ void Player::printInventory() {
         }
 
 
-        if (i+1 < _MAX_CANDY_AMOUNT && _inventory[i+1].name == "") {
+        if (i+1 < _inventory.size() && _inventory[i+1].name == "") {
             blank = "[Empty]";
         }
             else {
                 blank = "[" + _inventory[i+1].name + "]";
             }
 
-        if (i+2 < _MAX_CANDY_AMOUNT && _inventory[i+2].name == "") {
+        if (i+2 < _inventory.size() && _inventory[i+2].name == "") {
             blank2 = "[Empty]";
         }
             else {
@@ -181,11 +180,10 @@ bool Player::removeCandy(string candy_name) {
             return true;
         }
     }
-
     return false;
 }
 
-void Player::loadPlayer() {
+void Player::loadCharacter(string selectedCharacter) {
 
     ifstream file_input;
     file_input.open("characters.txt");
@@ -197,6 +195,7 @@ void Player::loadPlayer() {
 
     string line = "";
     string name = "";
+    bool charFound = false;
 
     while (getline(file_input, line)) {
 
@@ -205,7 +204,11 @@ void Player::loadPlayer() {
         string candylist = "";
 
         getline(ss, playersName, '|');
-        name = playersName;
+
+        if (playersName == selectedCharacter) {
+            charFound = true;
+
+        _name = playersName;
         
         ss >> _stamina;
         ss.ignore();
@@ -216,7 +219,9 @@ void Player::loadPlayer() {
         getline (ss, candylist, '|');
 
         stringstream playerCandy(candylist);
-        string name = "";
+
+        _inventory.clear();
+        
 
         while(getline(playerCandy, name, ',')) {
             if (_candy_amount < _MAX_CANDY_AMOUNT) {
@@ -225,7 +230,68 @@ void Player::loadPlayer() {
                 _candy_amount++;
             }
         }
+        break;
+        }
     }
 
     file_input.close();
+
+    if (charFound == false) {
+        cout << "Character not matched" << endl;
+    }
+}
+
+void Player::pickCharacter() {
+
+    ifstream file_input("characters.txt");
+
+    if (file_input.fail()) {
+        cout << "Unable to open file" << endl;
+        return;
+    }
+
+    cout << "Awesome! Here is a list of characters a player can select from: " << endl;
+
+    string line = "";
+    vector<string> charNames;
+
+    while (getline(file_input, line)) {
+        stringstream ss(line);
+        string characterName;
+
+        getline(ss, characterName, '|');
+        charNames.push_back(characterName);
+
+        cout << characterName << endl;
+    }
+
+    file_input.close();
+
+    string selectedCharacter = "";
+
+    cout << "Choose from the following" << endl;
+    cin >> selectedCharacter;
+
+    loadCharacter(selectedCharacter);
+
+    cout << "You have chosen " << _name << endl;
+
+    return;
+}
+
+void Player::removeCharacter(string) {
+    ifstream input_file("characters.txt");
+    ofstream output_file("characters.txt");
+
+    string line;
+
+
+
+}
+
+int main () {
+
+    // assert(_inventory.size() == _MAX_CANDY_AMOUNT);
+
+    return 0;
 }

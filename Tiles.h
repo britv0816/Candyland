@@ -5,9 +5,10 @@ class Tile {
     private:
     string tile_;
     string tile_type_;
+    string color;
 
     public:
-    // tile();
+    Tile();
     void shortcutTile();
     void icecreamTile();
     void gumdropTile();
